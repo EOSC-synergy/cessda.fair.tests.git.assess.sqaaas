@@ -1,0 +1,58 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/cessda/cessda.fair.tests:
+      branch: main
+      repo: https://github.com/cessda/cessda.fair.tests.git
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/cessda/cessda.fair.tests git:
+        commands:
+        - /usr/bin/env sh .sqa/script.snazzy-firebrick-zorse.sh
+        container: qc.acc_stinky-grey-bloodhound
+  QC.Doc:
+    repos:
+      github.com/cessda/cessda.fair.tests find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.baggy-indigo-dollar.sh
+        container: qc.doc_nippy-ivory-eagle
+      github.com/cessda/cessda.fair.tests git:
+        commands:
+        - /usr/bin/env sh .sqa/script.trippy-purple-bulldog.sh
+        container: qc.doc_zippy-rust-moth
+      github.com/cessda/cessda.fair.tests markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.thirsty-dandelion-chipmunk.sh
+        container: qc.doc_droopy-alizarin-grasshopper
+  QC.Lic:
+    repos:
+      github.com/cessda/cessda.fair.tests licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.cheeky-cardinal-mist.sh
+        container: qc.lic_thirsty-eggplant-chameleon
+  QC.Met:
+    repos:
+      github.com/cessda/cessda.fair.tests cff-converter-python:
+        commands:
+        - /usr/bin/env sh .sqa/script.sleazy-pear-seahorse.sh
+        container: qc.met_zippy-crimson-russel
+  QC.Sty:
+    repos:
+      github.com/cessda/cessda.fair.tests checkstyle:
+        commands:
+        - /usr/bin/env sh .sqa/script.randy-charcoal-bongo.sh
+        container: qc.sty_bluesy-vermilion-vole
+  QC.Ver:
+    repos:
+      github.com/cessda/cessda.fair.tests get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.squeaky-champagne-slug.sh
+        container: qc.ver_crabby-burgundy-spider
+timeout: 5400
